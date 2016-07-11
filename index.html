@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Accordian</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script>
+    $(function() {
+      $('form').on('submit', function(e) {
+        e.preventDefault();
+        var character = $('#key').val(),
+            character_code = character.charCodeAt(0);
+
+        $(document).off('keypress').on('keypress', function(e) {
+          if (e.which !== character_code) { return; }
+          $('a').trigger('click');
+        });
+      });
+
+      $('a').on('click', function(e) {
+        e.preventDefault();
+        $('#accordian').slideToggle();
+      });
+    });
+  </script>
+</head>
+<body>
+  <main>
+    <form action="" method="get">
+      <fieldset>
+        <h1>Type a key to toggle the accordian with</h1>
+        <input type="text" id="key" name="key" maxlength="1">
+        <input type="submit" value="Set">
+      </fieldset>
+    </form>
+    <p><a href="#">Toggle accordian</a></p>
+    <div id="accordian">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio minus veritatis aliquid laboriosam porro consequuntur, consequatur laudantium dolore labore, reprehenderit necessitatibus ipsa fugit a quibusdam dignissimos officiis nam blanditiis sit.</p>
+    </div>
+  </main>
+</body>
+</html>
